@@ -18,7 +18,7 @@ const slotSpinSchema = z.object({
 
 const blackjackActionSchema = z.object({
   gameId: z.number(),
-  action: z.enum(["hit", "stand", "double", "split"]),
+  action: z.enum(["deal", "hit", "stand", "double", "split"]),
   betAmount: z.string().optional(),
 });
 
@@ -127,7 +127,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const bet = parseFloat(betAmount);
-      const currentBalance = parseFloat(user.balance);
+      const currentBalance = parseFloat(user.balance || '0');
 
       if (bet > currentBalance) {
         return res.status(400).json({ message: "Insufficient balance" });
@@ -227,7 +227,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       if (action === 'deal' && betAmount) {
         const bet = parseFloat(betAmount);
-        const currentBalance = parseFloat(user.balance);
+        const currentBalance = parseFloat(user.balance || '0');
 
         if (bet > currentBalance) {
           return res.status(400).json({ message: "Insufficient balance" });
