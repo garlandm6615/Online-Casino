@@ -29,12 +29,100 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Seed initial games
   const games = await storage.getGames();
   if (games.length === 0) {
+    // Classic Fruit Slots
     await storage.createGame({
-      name: "Golden Reels",
+      name: "Lucky Sevens",
       type: "slots",
+      subType: "classic",
+      theme: "fruit",
+      minBet: "0.05",
+      maxBet: "50.00",
+      rtp: "95.50",
+      reels: 3,
+      rows: 3,
+      paylines: 5,
+      maxMultiplier: 500,
+      features: ["wilds", "multipliers"],
+    });
+
+    // Adventure Video Slots
+    await storage.createGame({
+      name: "Treasure Quest",
+      type: "slots",
+      subType: "video",
+      theme: "adventure",
       minBet: "0.10",
       maxBet: "100.00",
+      rtp: "96.80",
+      reels: 5,
+      rows: 3,
+      paylines: 25,
+      maxMultiplier: 2000,
+      features: ["wilds", "scatters", "free_spins", "bonus_rounds"],
+    });
+
+    // Egyptian Themed Slots
+    await storage.createGame({
+      name: "Pharaoh's Gold",
+      type: "slots",
+      subType: "video",
+      theme: "egyptian",
+      minBet: "0.20",
+      maxBet: "200.00",
+      rtp: "97.10",
+      reels: 5,
+      rows: 4,
+      paylines: 40,
+      maxMultiplier: 5000,
+      features: ["expanding_wilds", "scatters", "free_spins", "multipliers"],
+    });
+
+    // Megaways Slots
+    await storage.createGame({
+      name: "Diamond Strike Megaways",
+      type: "slots",
+      subType: "megaways",
+      theme: "gems",
+      minBet: "0.25",
+      maxBet: "125.00",
       rtp: "96.50",
+      reels: 6,
+      rows: 7,
+      paylines: 117649, // Max megaways
+      maxMultiplier: 10000,
+      features: ["cascading_reels", "multipliers", "free_spins", "bonus_buy"],
+    });
+
+    // Progressive Jackpot Slots
+    await storage.createGame({
+      name: "Mega Fortune",
+      type: "slots",
+      subType: "progressive",
+      theme: "luxury",
+      minBet: "0.50",
+      maxBet: "500.00",
+      rtp: "96.60",
+      reels: 5,
+      rows: 3,
+      paylines: 25,
+      maxMultiplier: 1000000,
+      features: ["progressive_jackpot", "bonus_wheel", "free_spins", "wilds"],
+    });
+
+    // Fantasy Theme Slots
+    await storage.createGame({
+      name: "Dragon's Realm",
+      type: "slots",
+      subType: "video",
+      theme: "fantasy",
+      minBet: "0.15",
+      maxBet: "150.00",
+      rtp: "96.90",
+      reels: 5,
+      rows: 4,
+      paylines: 50,
+      maxMultiplier: 3000,
+      features: ["stacked_wilds", "scatters", "free_spins", "pick_bonus"],
     });
     
     await storage.createGame({

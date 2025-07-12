@@ -8,6 +8,7 @@ import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
 import Home from "@/pages/home";
 import Slots from "@/pages/slots";
+import SlotGames from "@/pages/slot-games";
 import Blackjack from "@/pages/blackjack";
 import Dashboard from "@/pages/dashboard";
 import Transactions from "@/pages/transactions";
@@ -25,6 +26,8 @@ function Router() {
         <>
           <Route path="/" component={Home} />
           <Route path="/slots" component={Slots} />
+          <Route path="/slot-games" component={SlotGames} />
+          <Route path="/slots/:gameId" component={SlotGames} />
           <Route path="/blackjack" component={Blackjack} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/transactions" component={Transactions} />

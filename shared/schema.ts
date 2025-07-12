@@ -47,9 +47,16 @@ export const games = pgTable("games", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 100 }).notNull(),
   type: varchar("type", { length: 50 }).notNull(), // slots, blackjack, roulette
+  subType: varchar("sub_type", { length: 50 }), // classic, video, progressive, megaways
+  theme: varchar("theme", { length: 50 }), // adventure, fantasy, fruit, egyptian, etc.
   minBet: decimal("min_bet", { precision: 10, scale: 2 }).notNull(),
   maxBet: decimal("max_bet", { precision: 10, scale: 2 }).notNull(),
   rtp: decimal("rtp", { precision: 5, scale: 2 }).notNull(), // Return to Player percentage
+  reels: integer("reels").default(5), // Number of reels
+  rows: integer("rows").default(3), // Number of rows
+  paylines: integer("paylines").default(25), // Number of paylines
+  maxMultiplier: integer("max_multiplier").default(1000), // Maximum win multiplier
+  features: text("features").array(), // Special features like wilds, scatters, free spins
   isActive: boolean("is_active").default(true),
   createdAt: timestamp("created_at").defaultNow(),
 });
